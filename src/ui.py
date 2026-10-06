@@ -16,7 +16,7 @@ def load_all_models():
     
     # 1. Summarization Model 
     pipelines['summarization'] = pipeline(
-        "text-generation", 
+        "summarization",
         model="sshleifer/distilbart-cnn-12-6"
     )
     
