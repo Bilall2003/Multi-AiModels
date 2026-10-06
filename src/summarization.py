@@ -11,11 +11,11 @@ def summarization_func(text_input,pipeline_instance):
 
     output = pipeline_instance(
         text_input,
-        max_new_tokens=100,
+        max_new_tokens=int(len(text_input)/2),
         do_sample=True,
-        num_beams=4,
-        length_penalty=0.8,
-        repetition_penalty=1.2
+        num_beams=5,
+        length_penalty=0.7,
+        repetition_penalty=1.5
     )
 
     return output[0]["summary_text"]
