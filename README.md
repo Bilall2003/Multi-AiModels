@@ -161,13 +161,13 @@ This demonstrates the practical difference between running AI models locally and
 
 | Technology                   | Purpose                                    |
 | ---------------------------- | ------------------------------------------ |
-| 🐍 Python                    | Core programming language                  |
-| 🎈 Streamlit                 | Web application and UI                     |
-| 🤗 Hugging Face Transformers | Local NLP models                           |
-| 🔀 OpenRouter                | LLM API provider                           |
-| 🔌 OpenAI Python SDK         | OpenAI-compatible API client               |
-| 🔐 Streamlit Secrets         | Secure API key management                  |
-| 🌳 Git & GitHub              | Version control and source code management |
+| Python                    | Core programming language                  |
+| Streamlit                 | Web application and UI                     |
+| Hugging Face Transformers | Local NLP models                           |
+| OpenRouter                | LLM API provider                           |
+| OpenAI Python SDK         | OpenAI-compatible API client               |
+| Streamlit Secrets         | Secure API key management                  |
+| Git & GitHub              | Version control and source code management |
 
 ---
 
