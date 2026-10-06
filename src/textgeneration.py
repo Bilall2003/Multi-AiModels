@@ -22,23 +22,3 @@ def run_gen_pipeline(prompt):
     return response.choices[0].message.content
 
 
-# response output is like this way so:
-# response.choices[0] extract list then choose message and its content
-
-# response = {
-#     "id": "abc123",
-#     "choices": [
-#         {
-#             "index": 0,
-#             "message": {
-#                 "role": "assistant",
-#                 "content": "Machine learning is a branch of AI that allows computers to learn patterns from data."
-#             }
-#         }
-#     ],
-#     "model": "some-free-model",
-#     "usage": {
-#         "prompt_tokens": 5,
-#         "completion_tokens": 15
-#     }
-# }
