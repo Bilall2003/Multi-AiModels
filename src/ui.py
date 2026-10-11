@@ -106,6 +106,7 @@ try:
     elif user_sel == "Text-generation":
 
         text_input3 = st.chat_input("write here....")
+        st.sidebar.radio("Choose model",["Low","Moderate","High"])
 
         st.title(
             "Text-Generation",
