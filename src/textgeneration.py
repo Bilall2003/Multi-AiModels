@@ -5,7 +5,7 @@ from openai import OpenAI
 def run_gen_pipeline(prompt):
 
     client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",  # why use .streamlit or what dot means and this base url mans
+        base_url="https://openrouter.ai/api/v1",  
         api_key=st.secrets["OPENROUTER_API_KEY"]
     )
     
