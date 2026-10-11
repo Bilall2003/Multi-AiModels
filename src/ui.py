@@ -106,7 +106,8 @@ try:
     elif user_sel == "Text-generation":
 
         text_input3 = st.chat_input("write here....")
-        model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"])
+        model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model \n check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
+        st.sidebar.info(f"User selected: {model_Sel}")
 
         st.title(
             "Text-Generation",
@@ -139,6 +140,30 @@ try:
                 with st.spinner("Thinking...", show_time=True):
 
                     generation = low(text_input3)
+
+                    st.markdown(generation)
+
+            st.session_state.message3.append({
+                "role": "assistant",
+                "content": generation
+            })
+            
+            
+        elif text_input3 and model_Sel=="Moderate":
+
+            with st.chat_message("user"):
+                st.markdown(text_input3)
+
+            st.session_state.message3.append({
+                "role": "user",
+                "content": text_input3
+            })
+
+            with st.chat_message("assistant"):
+
+                with st.spinner("Thinking...", show_time=True):
+
+                    generation = moderate(text_input3)
 
                     st.markdown(generation)
 
