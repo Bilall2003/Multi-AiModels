@@ -171,6 +171,29 @@ try:
                 "role": "assistant",
                 "content": generation
             })
+        
+        elif text_input3 and model_Sel=="High":
+        
+                    with st.chat_message("user"):
+                        st.markdown(text_input3)
+        
+                    st.session_state.message3.append({
+                        "role": "user",
+                        "content": text_input3
+                    })
+        
+                    with st.chat_message("assistant"):
+        
+                        with st.spinner("Thinking...", show_time=True):
+        
+                            generation = high(text_input3)
+        
+                            st.markdown(generation)
+        
+                    st.session_state.message3.append({
+                        "role": "assistant",
+                        "content": generation
+                    })
     else:
         st.info(f"{user_sel} is not available yet.")
 
