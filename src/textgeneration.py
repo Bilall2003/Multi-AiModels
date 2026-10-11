@@ -44,7 +44,7 @@ def moderate(prompt):
     return response.choices[0].message.content
     
 prompt="Enter text"
-low(prompt)
+moderate(prompt)
     
 def high(prompt):
     
@@ -66,6 +66,6 @@ def high(prompt):
     return response.choices[0].message.content
 
 prompt="Enter text"
-low(prompt)
+high(prompt)
 
 
