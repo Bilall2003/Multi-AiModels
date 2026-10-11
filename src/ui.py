@@ -106,7 +106,7 @@ try:
     elif user_sel == "Text-generation":
 
         text_input3 = st.chat_input("write here....")
-        model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model \n check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
+        model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model.....check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
         st.sidebar.info(f"User selected: {model_Sel}")
 
         st.title(
