@@ -106,7 +106,7 @@ try:
     elif user_sel == "Text-generation":
 
         text_input3 = st.chat_input("write here....")
-        st.sidebar.radio("Choose model",["Low","Moderate","High"])
+        model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"])
 
         st.title(
             "Text-Generation",
@@ -125,7 +125,7 @@ try:
                 st.markdown(message3["content"])
                 
 
-        if text_input3:
+        if text_input3 and model_Sel=="Low":
 
             with st.chat_message("user"):
                 st.markdown(text_input3)

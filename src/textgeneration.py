@@ -19,20 +19,6 @@ def run_gen_pipeline(prompt):
                     "role": "user",
                     "content": prompt
                 }
-            ]
-        )
-
-        return response.choices[0].message.content
-    low()
-    def low():
-    
-        response = client.chat.completions.create(
-            model="openrouter/free",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
             ],temperature=0.3
         )
 
