@@ -2,7 +2,7 @@ import streamlit as st
 from transformers import pipeline,logging
 from summarization import summarization_func
 from sentiment import run_sent_pipeline
-from textgeneration import run_gen_pipeline
+from textgeneration import run_gen_pipeline 
 
 # ------------------------------------------------------------------
 # CRITICAL FIX: Instantiate pipelines INSIDE the cache block
