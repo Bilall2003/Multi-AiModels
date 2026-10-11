@@ -122,6 +122,7 @@ try:
 
             with st.chat_message(message3["role"]):
                 st.markdown(message3["content"])
+                
 
         if text_input3:
 
