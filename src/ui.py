@@ -110,7 +110,6 @@ try:
 
         st.title(
             "Text-Generation",
-            help="https://huggingface.co/openai-community/gpt2"
         )
 
         st.caption("Input a message to start chatting...")
