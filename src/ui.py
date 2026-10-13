@@ -104,96 +104,102 @@ try:
             
     # --- TEXT GENERATION ---
     elif user_sel == "Text-generation":
+        
+        try:
 
-        text_input3 = st.chat_input("write here....")
-        model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model.....check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
-        st.sidebar.info(f"User selected: {model_Sel}")
+            text_input3 = st.chat_input("write here....")
+            model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model.....check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
+            st.sidebar.info(f"User selected: {model_Sel}")
 
-        st.title(
-            "Text-Generation",
-        )
+            st.title(
+                "Text-Generation",
+            )
 
-        st.caption("Input a message to start chatting...")
-        st.divider()
+            st.caption("Input a message to start chatting...")
+            st.divider()
 
-        if "message3" not in st.session_state:
-            st.session_state.message3 = []
+            if "message3" not in st.session_state:
+                st.session_state.message3 = []
 
-        for message3 in st.session_state.message3:
+            for message3 in st.session_state.message3:
 
-            with st.chat_message(message3["role"]):
-                st.markdown(message3["content"])
+                with st.chat_message(message3["role"]):
+                    st.markdown(message3["content"])
+                    
+
+            if text_input3 and model_Sel=="Low":
+
+                with st.chat_message("user"):
+                    st.markdown(text_input3)
+
+                st.session_state.message3.append({
+                    "role": "user",
+                    "content": text_input3
+                })
+
+                with st.chat_message("assistant"):
+
+                    with st.spinner("Thinking...", show_time=True):
+
+                        generation = low(text_input3)
+
+                        st.markdown(generation)
+
+                st.session_state.message3.append({
+                    "role": "assistant",
+                    "content": generation
+                })
                 
+                
+            elif text_input3 and model_Sel=="Moderate":
 
-        if text_input3 and model_Sel=="Low":
+                with st.chat_message("user"):
+                    st.markdown(text_input3)
 
-            with st.chat_message("user"):
-                st.markdown(text_input3)
+                st.session_state.message3.append({
+                    "role": "user",
+                    "content": text_input3
+                })
 
-            st.session_state.message3.append({
-                "role": "user",
-                "content": text_input3
-            })
+                with st.chat_message("assistant"):
 
-            with st.chat_message("assistant"):
+                    with st.spinner("Thinking...", show_time=True):
 
-                with st.spinner("Thinking...", show_time=True):
+                        generation = moderate(text_input3)
 
-                    generation = low(text_input3)
+                        st.markdown(generation)
 
-                    st.markdown(generation)
-
-            st.session_state.message3.append({
-                "role": "assistant",
-                "content": generation
-            })
+                st.session_state.message3.append({
+                    "role": "assistant",
+                    "content": generation
+                })
             
+            elif text_input3 and model_Sel=="High":
             
-        elif text_input3 and model_Sel=="Moderate":
-
-            with st.chat_message("user"):
-                st.markdown(text_input3)
-
-            st.session_state.message3.append({
-                "role": "user",
-                "content": text_input3
-            })
-
-            with st.chat_message("assistant"):
-
-                with st.spinner("Thinking...", show_time=True):
-
-                    generation = moderate(text_input3)
-
-                    st.markdown(generation)
-
-            st.session_state.message3.append({
-                "role": "assistant",
-                "content": generation
-            })
+                        with st.chat_message("user"):
+                            st.markdown(text_input3)
+            
+                        st.session_state.message3.append({
+                            "role": "user",
+                            "content": text_input3
+                        })
+            
+                        with st.chat_message("assistant"):
+            
+                            with st.spinner("Thinking...", show_time=True):
+            
+                                generation = high(text_input3)
+            
+                                st.markdown(generation)
+            
+                        st.session_state.message3.append({
+                            "role": "assistant",
+                            "content": generation
+                        })
         
-        elif text_input3 and model_Sel=="High":
-        
-                    with st.chat_message("user"):
-                        st.markdown(text_input3)
-        
-                    st.session_state.message3.append({
-                        "role": "user",
-                        "content": text_input3
-                    })
-        
-                    with st.chat_message("assistant"):
-        
-                        with st.spinner("Thinking...", show_time=True):
-        
-                            generation = high(text_input3)
-        
-                            st.markdown(generation)
-        
-                    st.session_state.message3.append({
-                        "role": "assistant",
-                        "content": generation
-                    })
+        except Exception as e:
+            st.error(f"Something Went Wrong {e}")
+            
     else:
         st.info(f"{user_sel} is not available yet.")
 
