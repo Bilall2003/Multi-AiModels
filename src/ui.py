@@ -116,6 +116,7 @@ try:
             )
 
             st.caption("Input a message to start chatting...")
+            st.warning("Hold information till mid 2024....Can't provide latest and real time news...")
             st.divider()
 
             if "message3" not in st.session_state:
