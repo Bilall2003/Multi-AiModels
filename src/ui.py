@@ -2,7 +2,6 @@ import streamlit as st
 from transformers import pipeline,logging
 from summarization import summarization_func
 from sentiment import run_sent_pipeline
-from textgeneration import low,moderate,high
 
 # ------------------------------------------------------------------
 # CRITICAL FIX: Instantiate pipelines INSIDE the cache block
@@ -104,8 +103,10 @@ try:
             
     # --- TEXT GENERATION ---
     elif user_sel == "Text-generation":
+    
         
         try:
+            from textgeneration import low,moderate,high
 
             text_input3 = st.chat_input("write here....")
             model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model.....check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
@@ -207,7 +208,7 @@ try:
                         })
         
         except Exception as e:
-            st.error(f"Something Went Wrong {e}")
+            st.error(f"Something Went Wrong...Please Try again Later")
             
     else:
         st.info(f"{user_sel} is not available yet.")

@@ -11,21 +11,19 @@ try:
             api_key=st.secrets["OPENROUTER_API_KEY"]
         )
         
-        if client:
         
-            response = client.chat.completions.create(
-                model="openrouter/free",
-                messages=[
+        response = client.chat.completions.create(
+            model="openrouter/free",
+            messages=[
                     {
                         "role": "user",
                         "content": prompt
                     }
                 ],temperature=0.3
             )
+        
 
-            return response.choices[0].message.content
-        else:
-            st.error("Limit reached....")
+        return response.choices[0].message.content
 
     prompt="Enter text"
     low(prompt)
@@ -76,6 +74,6 @@ try:
 
 except Exception as e:
     
-    st.error(f"Something Went Wrong{e}")
+    st.warning(f"Something Went Wrong: {e}")
 
 
