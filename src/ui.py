@@ -4,6 +4,83 @@ from summarization import summarization_func
 from sentiment import run_sent_pipeline
 
 # ------------------------------------------------------------------
+# UI ONLY: page config + custom styling (no logic here)
+# ------------------------------------------------------------------
+st.set_page_config(page_title="Multi-AiModel", page_icon="✨", layout="centered")
+
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+html, body, [class*="css"], .stMarkdown, button, input, textarea {
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif !important;
+}
+
+/* Hide default Streamlit menu/footer */
+#MainMenu, footer {visibility: hidden;}
+header[data-testid="stHeader"] {background: transparent;}
+
+/* Moving gradient background */
+.stApp {
+    background: linear-gradient(125deg, #0B1020, #141B3D, #1C1745, #0F2A3F, #0B1020);
+    background-size: 400% 400%;
+    animation: bgShift 22s ease infinite;
+}
+@keyframes bgShift {
+    0%   {background-position: 0% 50%;}
+    50%  {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+.stApp::before {
+    content:""; position:fixed; inset:-20%; z-index:0; pointer-events:none;
+    background:
+        radial-gradient(600px 400px at 20% 30%, rgba(108,140,255,.18), transparent 60%),
+        radial-gradient(500px 380px at 80% 70%, rgba(139,92,246,.16), transparent 60%);
+    animation: drift 26s ease-in-out infinite alternate;
+}
+@keyframes drift {
+    from {transform: translate(-3%, -2%) scale(1);}
+    to   {transform: translate(4%, 3%) scale(1.08);}
+}
+@media (prefers-reduced-motion: reduce) {
+    .stApp, .stApp::before {animation: none;}
+}
+[data-testid="stMain"], .block-container {position: relative; z-index: 1;}
+.block-container {padding-top: 2.2rem; max-width: 820px;}
+
+/* Chat input bar transparent so gradient shows */
+[data-testid="stBottom"], [data-testid="stBottom"] > div,
+[data-testid="stBottomBlockContainer"] {background: transparent !important;}
+[data-testid="stChatInput"] {border-radius: 16px;}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #121930 0%, #0F1527 100%);
+    border-right: 1px solid rgba(255,255,255,.06);
+}
+[data-testid="stSidebar"] hr {border-color: rgba(255,255,255,.07);}
+
+/* Titles */
+.stApp h1 {
+    font-weight: 800; letter-spacing: -.02em;
+    background: linear-gradient(90deg, #F4F6FD, #9DB2FF);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* Chat messages: glass cards */
+[data-testid="stChatMessage"] {
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 16px; padding: 1rem 1.1rem; margin-bottom: .8rem;
+}
+
+/* Alerts and select boxes */
+[data-testid="stAlert"] {border-radius: 12px;}
+</style>
+""", unsafe_allow_html=True)
+
+# ------------------------------------------------------------------
 # CRITICAL FIX: Instantiate pipelines INSIDE the cache block
 # ------------------------------------------------------------------
 logging.set_verbosity_error()
