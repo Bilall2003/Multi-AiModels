@@ -75,10 +75,98 @@ header[data-testid="stHeader"] {background: transparent;}
     border-radius: 16px; padding: 1rem 1.1rem; margin-bottom: .8rem;
 }
 
-/* Alerts and select boxes */
 [data-testid="stAlert"] {border-radius: 12px;}
+
+/* ---------- Extra UI components ---------- */
+.hero-icon {
+    width:54px; height:54px; border-radius:16px; display:grid; place-items:center;
+    font-size:1.7rem; margin-bottom:.8rem;
+    background: linear-gradient(135deg, rgba(108,140,255,.25), rgba(139,92,246,.20));
+    border: 1px solid rgba(140,160,255,.40);
+    box-shadow: 0 8px 28px rgba(108,140,255,.25), inset 0 1px 0 rgba(255,255,255,.15);
+}
+.chip-row {margin: -.2rem 0 .9rem 0;}
+.chip {
+    display:inline-block; padding:.24rem .75rem; border-radius:999px; font-size:.78rem;
+    font-weight:600; margin: 0 .4rem .4rem 0;
+    background: rgba(108,140,255,.12); color:#B3C2FF; border:1px solid rgba(108,140,255,.30);
+}
+.chip.ok {background: rgba(52,211,153,.12); color:#7BE3BC; border-color: rgba(52,211,153,.32);}
+.chip.ok::before {
+    content:""; display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:#34D399; margin-right:.45rem; box-shadow:0 0 8px #34D399;
+}
+
+/* Sidebar brand */
+.brand {display:flex; align-items:center; gap:.7rem; padding:.2rem 0 .2rem 0;}
+.brand-logo {
+    width:44px; height:44px; border-radius:13px; display:grid; place-items:center;
+    background: linear-gradient(135deg,#6C8CFF,#8B5CF6); font-size:1.35rem;
+    box-shadow: 0 8px 22px rgba(108,140,255,.40);
+}
+.brand-text {font-size:.78rem; color:#8D98B8; line-height:1.3;}
+.brand-text b {display:block; font-size:1rem; color:#F2F5FF; font-weight:800;}
+.side-foot {font-size:.76rem; color:#7F8AAB; line-height:1.5; margin-top:.4rem;}
+
+/* Sidebar title/caption sit tighter */
+[data-testid="stSidebar"] h1 {font-size:1.5rem;}
+
+/* Divider with gradient */
+.stApp hr {
+    border: none !important; height: 1px !important;
+    background: linear-gradient(90deg, rgba(108,140,255,.55), rgba(255,255,255,.06), transparent) !important;
+}
+
+/* Select box and radio */
+[data-testid="stSelectbox"] > div > div {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px; transition: border-color .15s ease, box-shadow .15s ease;
+}
+[data-testid="stSelectbox"] > div > div:hover {border-color:#6C8CFF; box-shadow:0 0 0 3px rgba(108,140,255,.15);}
+[data-testid="stRadio"] label {border-radius: 10px;}
+
+/* Chat input focus glow */
+[data-testid="stChatInput"] > div {
+    border: 1px solid rgba(255,255,255,.14); border-radius: 16px;
+    background: rgba(255,255,255,.05); backdrop-filter: blur(10px);
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
+[data-testid="stChatInput"] > div:focus-within {
+    border-color:#6C8CFF; box-shadow: 0 0 0 3px rgba(108,140,255,.22);
+}
+
+/* Chat avatars */
+[data-testid="stChatMessageAvatarUser"] {background: linear-gradient(135deg,#6C8CFF,#8B5CF6) !important;}
+[data-testid="stChatMessageAvatarAssistant"] {background: linear-gradient(135deg,#34D399,#22A6B3) !important;}
+
+/* Alerts: info / warning / error cards */
+[data-testid="stAlert"] {
+    border: 1px solid rgba(255,255,255,.10); backdrop-filter: blur(8px);
+}
+
+/* Status box in sidebar */
+[data-testid="stStatus"] {
+    border-radius: 14px; border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+}
+
+/* Captions */
+.stApp [data-testid="stCaptionContainer"] {color:#9AA5C4;}
+
+/* Slim scrollbar */
+::-webkit-scrollbar {width: 8px;}
+::-webkit-scrollbar-thumb {background: rgba(140,160,255,.30); border-radius: 8px;}
+::-webkit-scrollbar-track {background: transparent;}
 </style>
 """, unsafe_allow_html=True)
+
+
+def ui_chips(*labels):
+    extra = "".join(f'<span class="chip">{l}</span>' for l in labels)
+    st.markdown(
+        f'<div class="chip-row"><span class="chip ok">Model ready</span>{extra}</div>',
+        unsafe_allow_html=True,
+    )
 
 # ------------------------------------------------------------------
 # CRITICAL FIX: Instantiate pipelines INSIDE the cache block
@@ -105,6 +193,10 @@ def load_all_models():
     return pipelines
 
 # Show a clean loading message instead of crashing the browser WebSocket
+st.sidebar.markdown(
+    '<div class="side-foot">Models stay in memory after the first load, so later requests are faster.</div>',
+    unsafe_allow_html=True,
+)
 with st.sidebar.status("Initializing AI Models...") as status:
     ai_pipelines = load_all_models()
     status.update(label="AI Models Loaded!", state="complete")
@@ -113,7 +205,11 @@ with st.sidebar.status("Initializing AI Models...") as status:
 # ------------------------------------------------------------------
 # UI Structure (Your Original Layout)
 # ------------------------------------------------------------------
-st.sidebar.title("Multi-AiModel")
+st.sidebar.markdown(
+    '<div class="brand"><div class="brand-logo">✨</div>'
+    '<div class="brand-text"><b>AI Workspace</b>Summarize, analyze, generate</div></div>',
+    unsafe_allow_html=True,
+)
 st.sidebar.caption("Powered By AI")
 st.sidebar.divider()
 
@@ -129,6 +225,7 @@ try:
         
         st.sidebar.info("Larger input take time...")
         st.title("Text-Summarization", help="https://huggingface.co/sshleifer/distilbart-cnn-12-6")
+        ui_chips("distilbart-cnn-12-6")
         st.caption("Start with entering your text")
         st.divider()
         
@@ -157,6 +254,7 @@ try:
         text_input2 = st.chat_input("write here....")
             
         st.title("Sentiment-Analysis", help="https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english")
+        ui_chips("distilbert-sst-2")
         st.divider()
         
         if 'messages2' not in st.session_state:
@@ -190,6 +288,7 @@ try:
             st.sidebar.info(f"User selected: {model_Sel}")
 
             st.title("Text-Generation",)
+            ui_chips(f"{model_Sel} effort")
 
             st.caption("Input a message to start chatting...")
             st.warning("Hold information till mid 2024....Can't provide latest and real time news...")
@@ -290,3 +389,4 @@ try:
 
 except Exception as e:
     st.error(f"Something went wrong... {e}")
+
