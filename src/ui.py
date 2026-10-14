@@ -127,17 +127,19 @@ try:
                 with st.chat_message(message3["role"]):
                     st.markdown(message3["content"])
                     
-            low_count=0
-            total_low_count=2
-            if text_input3 and model_Sel=="Low":
+            if "low_count" not in st.session_state:
+                st.session_state.low_count = 0
 
+            total_low_count = 2
+
+            if text_input3 and model_Sel == "Low":
                 with st.chat_message("user"):
-                    low_count+=1
-                    if low_count != total_low_count:
-                        st.markdown(text_input3)
+                    if st.session_state.low_count >= total_low_count:
+                        st.warning("Limit reached.")
+                        st.info(st.session_state.low_count)
                     else:
-                        st.warning("Limit Reached.....")
-                        st.stop()
+                        st.session_state.low_count += 1
+                        st.markdown(text_input3)
 
                 st.session_state.message3.append({
                     "role": "user",
