@@ -112,9 +112,7 @@ try:
             model_Sel=st.sidebar.radio("Choose model",["Low","Moderate","High"],help="Effort of model.....check more https://academy.claude.com/tutorials/choosing-the-right-effort-level-in-claude-code")
             st.sidebar.info(f"User selected: {model_Sel}")
 
-            st.title(
-                "Text-Generation",
-            )
+            st.title("Text-Generation",)
 
             st.caption("Input a message to start chatting...")
             st.warning("Hold information till mid 2024....Can't provide latest and real time news...")
