@@ -68,7 +68,7 @@ try:
             st.session_state.messages.append({"role": "user", "content": text_input})
 
             with st.chat_message("assistant"):
-                with st.spinner("Generating..."):                  
+                with st.spinner("Summarizing..."):                  
                     summary = summarization_func(text_input, ai_pipelines['summarization'])
                     st.markdown(summary)
 
