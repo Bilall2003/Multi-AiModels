@@ -7,21 +7,25 @@ try:
     def low(prompt):
         
         client = OpenAI(
-            base_url="https://openrouter.ai/api/v1",  
+            base_url="https://openrouter.ai/api/v1",
             api_key=st.secrets["OPENROUTER_API_KEY"]
         )
         
-        response = client.chat.completions.create(
-            model="openrouter/free",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],temperature=0.3
-        )
+        if client:
+        
+            response = client.chat.completions.create(
+                model="openrouter/free",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],temperature=0.3
+            )
 
-        return response.choices[0].message.content
+            return response.choices[0].message.content
+        else:
+            st.error("Limit reached....")
 
     prompt="Enter text"
     low(prompt)
