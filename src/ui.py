@@ -199,7 +199,7 @@ st.sidebar.markdown(
 )
 with st.sidebar.status("Initializing AI Models...") as status:
     ai_pipelines = load_all_models()
-    status.update(label="AI Models Loaded!", state="complete")
+    status.update(label="Models Loaded!", state="complete")
 
 
 # ------------------------------------------------------------------
