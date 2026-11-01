@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import pipeline,logging
 from summarization import summarization_func
-from sentiment import 
+from sentiment import run_sent_pipeline
 import time
 
 # ------------------------------------------------------------------
@@ -303,7 +303,7 @@ try:
                 with st.chat_message(message3["role"]):
                     st.markdown(message3["content"])
                     
-            if "count" and "total_count"not in st.session_state:
+            if "count" and "total_count" not in st.session_state:
                 st.session_state.count = 0
                 st.session_state.total_count = 5
 
