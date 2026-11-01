@@ -318,7 +318,7 @@ try:
                     if st.session_state.lowcount >= st.session_state.total_lowcount:
                         st.warning("You have reached the maximum number of requests for low model. Please wait for a while before making more requests.")
                     else:
-                        st.session_state.count += 1
+                        st.session_state.lowcount += 1
                         st.markdown(text_input3)
 
                 st.session_state.message3.append({
