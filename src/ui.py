@@ -1,7 +1,8 @@
 import streamlit as st
 from transformers import pipeline,logging
 from summarization import summarization_func
-from sentiment import run_sent_pipeline
+from sentiment import 
+import time
 
 # ------------------------------------------------------------------
 # UI ONLY: page config + custom styling (no logic here)
@@ -302,18 +303,13 @@ try:
                 with st.chat_message(message3["role"]):
                     st.markdown(message3["content"])
                     
-            if "low_count" not in st.session_state:
-                st.session_state.low_count = 0
+            if "count" and "total_count"not in st.session_state:
+                st.session_state.count = 0
+                st.session_state.total_count = 5
 
-            total_low_count = 5
 
             if text_input3 and model_Sel == "Low":
                 with st.chat_message("user"):
-                    if st.session_state.low_count >= total_low_count:
-                        st.warning("Limit reached.")
-                        st.stop()
-                    else:
-                        st.session_state.low_count += 1
                         st.markdown(text_input3)
 
                 st.session_state.message3.append({
