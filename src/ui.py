@@ -195,7 +195,7 @@ def load_all_models():
 
 # Show a clean loading message instead of crashing the browser WebSocket
 st.sidebar.markdown(
-    '<div class="side-foot">Models stay in memory after the first load, so later requests are faster.</div>',
+    '<div class="side-foot">Models stay in memory after the first load, so later requests are faster.Refreshing page will reset or clear history</div>',
     unsafe_allow_html=True,
 )
 with st.sidebar.status("Initializing AI Models...") as status:
