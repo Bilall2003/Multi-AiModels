@@ -307,8 +307,8 @@ try:
                 st.session_state.lowcount = 0
                 st.session_state.moderatecount = 0
                 st.session_state.highcount = 0
-                st.session_state.total_lowcount = 20
-                st.session_state.total_moderatecount =15 
+                st.session_state.total_lowcount = 2
+                st.session_state.total_moderatecount =3
                 st.session_state.total_highcount = 10
 
 
@@ -345,7 +345,9 @@ try:
                 with st.chat_message("user"):
                     if st.session_state.moderatecount>=st.session_state.total_moderatecounts:
                         st.warning("You have reached the maximum number of requests for moderate model. Please wait for a while before making more requests.")
-                    st.markdown(text_input3)
+                    else:
+                        st.session_state.moderatecount+=1
+                        st.markdown(text_input3)
 
                 st.session_state.message3.append({
                     "role": "user",
