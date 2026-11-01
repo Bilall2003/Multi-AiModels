@@ -305,11 +305,16 @@ try:
                     
             if "count" and "total_count" not in st.session_state:
                 st.session_state.count = 0
-                st.session_state.total_count = 5
+                st.session_state.total_count = 2
 
 
             if text_input3 and model_Sel == "Low":
                 with st.chat_message("user"):
+                    
+                    if st.session_state.count >= st.session_state.total_count:
+                        st.warning("You have reached the maximum number of requests. Please wait for a while before making more requests.")
+                    else:
+                        st.session_state.count += 1
                         st.markdown(text_input3)
 
                 st.session_state.message3.append({
