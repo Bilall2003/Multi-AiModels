@@ -308,9 +308,9 @@ try:
                 st.session_state.lowcount = 0
                 st.session_state.moderatecount = 0
                 st.session_state.highcount = 0
-                st.session_state.total_lowcount = 10
-                st.session_state.total_moderatecount =8
-                st.session_state.total_highcount = 6
+                st.session_state.total_lowcount = 6
+                st.session_state.total_moderatecount =5
+                st.session_state.total_highcount = 4
 
 
             if text_input3 and model_Sel == "Low":
