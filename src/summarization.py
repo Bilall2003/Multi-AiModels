@@ -15,7 +15,7 @@ def summarization_func(text_input,pipeline_instance):
         do_sample=True,
         num_beams=5,
         length_penalty=0.7,
-        repetition_penalty=1.2
+        repetition_penalty=1.2,
     )
 
     return output[0]["summary_text"]

@@ -308,8 +308,8 @@ try:
                 st.session_state.moderatecount = 0
                 st.session_state.highcount = 0
                 st.session_state.total_lowcount = 2
-                st.session_state.total_moderatecount =3
-                st.session_state.total_highcount = 10
+                st.session_state.total_moderatecount =2
+                st.session_state.total_highcount = 2
 
 
             if text_input3 and model_Sel == "Low":
@@ -317,6 +317,7 @@ try:
                     
                     if st.session_state.lowcount >= st.session_state.total_lowcount:
                         st.warning("You have reached the maximum number of requests for low model. Please wait for a while before making more requests.")
+                        st.stop()
                     else:
                         st.session_state.lowcount += 1
                         st.markdown(text_input3)
