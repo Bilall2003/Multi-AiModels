@@ -391,7 +391,7 @@ try:
                         })
         
         except Exception as e:
-            st.error(f"Something Went Wrong...Please Try again Later")            
+            st.error(f"Please Try again Later")            
     else:
         st.info(f"{user_sel} is not available yet.")
 

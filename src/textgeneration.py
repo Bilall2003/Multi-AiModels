@@ -74,6 +74,6 @@ try:
 
 except Exception as e:
     
-    st.warning(f"Something Went Wrong: {e}")
+    st.warning("Something went wrong, but we’ve got you covered.")
 
 
