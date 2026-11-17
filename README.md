@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/badge/Hugging%20Face-Transformers-yellow?style=for-the-badge&logo=huggingface" alt="Hugging Face">
   <img src="https://img.shields.io/badge/OpenRouter-API-purple?style=for-the-badge" alt="OpenRouter">
 </p>
-
+check release for live link
 ---
 
 ## 📌 Overview
