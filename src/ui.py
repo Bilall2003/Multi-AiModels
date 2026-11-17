@@ -396,5 +396,5 @@ try:
         st.info(f"{user_sel} is not available yet.")
 
 except Exception as e:
-    st.error(f"Something went wrong... {e}")
+    st.error(f"Something went wrong... {e}\n Try refreshing the Page.")
 
